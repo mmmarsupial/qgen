@@ -11,7 +11,7 @@ class CalculateMetric:
         self.metric = load_metric(metric)
 
     # Computes the metric for the predicted output given the gold output
-    def compute_merics(self, pred_labs):
+    def compute_metrics(self, pred_labs):
         
         tokenized_preds, tokenized_labs = pred_labs
         preds, labs = self._detokenize(tokenized_preds, tokenized_labs)

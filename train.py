@@ -9,9 +9,14 @@ from metric import CalculateMetric
 
 # Variables
 model_name = "t5-small"
-paths = {"train": "./claim_datasets/train_short.csv",
-         "validation": "./claim_datasets/valid_short.csv",
-         "test": "./claim_datasets/test_short.csv"
+#paths = {"train": "./claim_datasets/train_short.csv",
+#         "validation": "./claim_datasets/valid_short.csv",
+#         "test": "./claim_datasets/test_short.csv"
+#         }
+
+paths = {"train": "./claim_datasets/train.csv",
+         "validation": "./claim_datasets/valid.csv",
+         "test": "./claim_datasets/test.csv"
          }
 
 # Prepare data
@@ -45,7 +50,7 @@ args = Seq2SeqTrainingArguments(
     per_device_eval_batch_size=batch_size,
     weight_decay=0.01,
     save_total_limit=1,
-    num_train_epochs=10,
+    num_train_epochs=5,
     predict_with_generate=True,
     #fp16=True,
     load_best_model_at_end=True,
@@ -60,7 +65,7 @@ trainer = Seq2SeqTrainer(
     eval_dataset=validation_data,
     data_collator=data_collator,
     tokenizer=tokenizer,
-    compute_metrics=metric.compute_metrics()
+    compute_metrics=metric.compute_metrics
 )
 
 # Train and save model
