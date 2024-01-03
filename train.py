@@ -9,15 +9,18 @@ from metric import CalculateMetric
 
 # Variables
 model_name = "t5-small"
-#paths = {"train": "./claim_datasets/train_short.csv",
-#         "validation": "./claim_datasets/valid_short.csv",
-#         "test": "./claim_datasets/test_short.csv"
-#         }
+use_full_data = True
 
-paths = {"train": "./claim_datasets/train.csv",
-         "validation": "./claim_datasets/valid.csv",
-         "test": "./claim_datasets/test.csv"
-         }
+if use_full_data:
+    paths = {"train": "./claim_datasets/train.csv",
+            "validation": "./claim_datasets/valid.csv",
+            "test": "./claim_datasets/test.csv"
+            }
+else:
+    paths = {"train": "./claim_datasets/train_short.csv",
+            "validation": "./claim_datasets/valid_short.csv",
+            "test": "./claim_datasets/test_short.csv"
+            }
 
 # Prepare data
 data_prep = DataPrep(model_name)
@@ -71,6 +74,3 @@ trainer = Seq2SeqTrainer(
 # Train and save model
 trainer.train()
 trainer.save_model("./checkpoints/" + model_name + "-fine-tuned")
-
-
-
