@@ -8,7 +8,8 @@ from prepare_data import DataPrep
 from metric import CalculateMetric
 
 # Variables
-model_name = "t5-small"
+#model_name = "t5-small"
+model_name = "facebook/bart-base"
 use_full_data = True
 
 if use_full_data:
@@ -38,11 +39,11 @@ max_length_in = 200
 max_length_out = 100
 output_dir = "./checkpoints/" + model_name + "-fine-tuned"
 learning_rate = 0.001
-batch_size = 32
+batch_size = 16
 
 # Training arguments
 args = Seq2SeqTrainingArguments(
-    learning_rate=learning_rate,
+    #learning_rate=learning_rate,                                                # Default 1e-5 add warmup???
     evaluation_strategy="steps",
     eval_steps=100,
     logging_strategy="steps",
