@@ -112,4 +112,4 @@ def main(argv):
     trainer.save_model(output_dir)
 
 if __name__ == "__main__":
-    main(argv[1:])
+    main(argv[1:])                                                                      # argv[1:] because first arg is name of file
